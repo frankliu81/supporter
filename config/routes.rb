@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get "/requests/search" => "requests#search", as: :search_requests
+
   resources :requests
 
   get "/about" => "home#about"

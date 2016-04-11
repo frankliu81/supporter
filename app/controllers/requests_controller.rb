@@ -21,7 +21,15 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = Request.all
+    #@requests = Request.all
+     @requests = Request.order('created_at').page(params[:page]).per(7)
+     #byebug;
+  end
+
+  def search
+    #@requests = Request.all
+    @requests = Request.search(params[:search]).page(params[:page]).per(7)
+
   end
 
   def edit
