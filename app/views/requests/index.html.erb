@@ -1,0 +1,4 @@
+<h1>Support Requests</h1>
+<% @requests.each do |request| %>
+  <%= link_to request.id.to_s + ": " + request.name + " " + request.email, request_path(request) %>
+<% end %>

@@ -5,3 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+def random_department
+  rand_num = Random.rand(3)
+  if rand_num == 0
+    return "sales"
+  elsif rand_num ==1
+    return "marketing"
+  elsif rand_num == 2
+    return "technical"
+  end
+
+  "sales"
+end
+
+1000.times do
+  r = Request.create  name: Faker::Name.name,
+                      email: Faker::Internet.email,
+                      department: random_department,
+                      message: Faker::Lorem.paragraph
+end
