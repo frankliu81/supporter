@@ -1,4 +1,71 @@
 <h1>Support Requests</h1>
+
+<style>
+
+.container{
+  width: 95%;
+}
+.message--shorten{
+  max-width:200px; /* Customise it accordingly */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.request-heading, .request-item {
+  width: 100%;
+  border: solid black 1px;
+}
+</style>
+
+<div class = "col-md-12 request-heading">
+  <label class="col-md-2 control-label">
+     Name
+  </label>
+  <label class="col-md-2 control-label">
+    E-mail
+  </label>
+  <label class="col-md-2 control-label">
+    Department
+  </label>
+  <label class="col-md-3">
+    Message
+  </label>
+  <label class="col-md-3">
+    Actions
+  </label>
+</div>
+
 <% @requests.each do |request| %>
-  <%= link_to request.id.to_s + ": " + request.name + " " + request.email, request_path(request) %>
+  
+  <form class = "form-horizontal col-md-12 request-item">
+    <label class="col-md-2 control-label">
+      <%= request.name %>
+    </label>
+    <label class="col-md-2 control-label">
+      <%= request.email %>
+    </label>
+    <label class="col-md-2 control-label">
+      <%= request.department %>
+    </label>
+    <label class="col-md-3 control-label message--shorten">
+      <%= request.message %>
+    </label>
+
+    <form class="form-horizontal col-md-3 request-button-group">
+        <div class="col-md-4">
+          <%= link_to "Edit", edit_request_path(request) %>
+        </div>
+        <div class="col-md-4">
+          <%= link_to "Delete", request_path(request), method: :delete,
+                                                  data: {confirm: "Are you sure?"}%>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+    </form>
+
+  </form>
+
 <% end %>
