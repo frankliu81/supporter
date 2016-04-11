@@ -65,11 +65,11 @@
 
 <% @requests.each do |request| %>
 
-  <form class = "form-horizontal col-md-12 request-item">
+  <div class = "col-md-12 request-item">
     <label class="col-md-2 control-label">
       <%= request.name %>
     </label>
-    <label class="col-md-2 control-label">reques
+    <label class="col-md-2 control-label">
       <%= request.email %>
     </label>
     <label class="col-md-2 control-label">
@@ -79,7 +79,7 @@
       <%= request.message %>
     </label>
 
-    <form class="form-horizontal col-md-3 request-button-group">
+    <div class="col-md-3 request-button-group">
         <div class="col-md-4">
           <%= link_to "Edit", edit_request_path(request) %>
         </div>
@@ -88,11 +88,17 @@
                                                   data: {confirm: "Are you sure?"}%>
         </div>
         <div class="col-md-4">
+
+          <form action="/requests/status_change" method="POST">
+            <input type="hidden" name="id_status_change" class="form-control" value="<%= request.id %>">
+            <br>
+            <input type="submit" value="<%= request.status %>" class="btn btn-secondary">
+          </form>
         </div>
       </div>
-    </form>
+    </div>
 
-  </form>
+  </div>
 
 <% end %>
 
