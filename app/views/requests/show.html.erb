@@ -1,6 +1,6 @@
-<h2>Name: <%= @request.name %></h1>
-<h2>E-mail: <%= @request.email %> </p>
-<h2>Department: <%=  @request.department %> </h2>
+<h3>Name: <%= @request.name %></h1>
+<h3>E-mail: <%= @request.email %> </p>
+<h3>Department: <%=  @request.department %> </h2>
 <p>Message: <%=  @request.message %> </p>
 <%= link_to "Edit", edit_request_path(@request) %>
 <%= link_to "Delete", request_path(@request), method: :delete,

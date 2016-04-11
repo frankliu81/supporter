@@ -27,6 +27,11 @@
   width: 100%;
   border: solid black 1px;
 }
+
+.btn-secondary {
+  border: solid black 1px;
+}
+
 </style>
 
 <div class="header">
@@ -81,21 +86,24 @@
 
     <div class="col-md-3 request-button-group">
         <div class="col-md-4">
-          <%= link_to "Edit", edit_request_path(request) %>
-        </div>
-        <div class="col-md-4">
-          <%= link_to "Delete", request_path(request), method: :delete,
-                                                  data: {confirm: "Are you sure?"}%>
+          <form action=<%= edit_request_path(request)%> method="GET">
+            <input type="submit" value="Edit" class="btn btn-secondary">
+          </form>
         </div>
         <div class="col-md-4">
 
+          <%= form_for(request, :html => { :method => :delete, :data => {confirm: "Are you sure?"} }) do |f| %>
+            <input type="submit" value="Delete" class="btn btn-secondary">
+          <% end %>
+        </div>
+
+
+        <div class="col-md-4">
           <form action="/requests/status_change" method="POST">
             <input type="hidden" name="id_status_change" class="form-control" value="<%= request.id %>">
-            <br>
             <input type="submit" value="<%= request.status %>" class="btn btn-secondary">
           </form>
         </div>
-      </div>
     </div>
 
   </div>
