@@ -26,12 +26,6 @@ class RequestsController < ApplicationController
      #byebug;
   end
 
-  def search
-    #@requests = Request.all
-    @requests = Request.search(params[:search]).page(params[:page]).per(7)
-
-  end
-
   def edit
     @request = Request.find params[:id]
   end
@@ -52,5 +46,29 @@ class RequestsController < ApplicationController
     @request.destroy
     redirect_to requests_path
   end
+
+  def search
+    #@requests = Request.all
+    @requests = Request.search(params[:search]).page(params[:page]).per(7)
+  end
+
+  def status_change
+
+    @request = Request.find params[:id_status_change]
+
+    if @request.status == 'not_done'
+       @request.status = 'done'
+    elsif @request.status == 'done'
+      @request.status = 'not_done'
+    else
+      @request.status = 'not_done'
+    end
+
+    @request.save
+
+    redirect_to requests_path
+
+  end
+
 
 end

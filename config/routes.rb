@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get "/requests/search" => "requests#search", as: :search_requests
 
+  post "/requests/status_change" => "requests#status_change", as: :status_change_request
+
   resources :requests
 
   get "/about" => "home#about"

@@ -10,14 +10,14 @@
 def random_department
   rand_num = Random.rand(3)
   if rand_num == 0
-    return "sales"
+    return 'sales'
   elsif rand_num ==1
-    return "marketing"
+    return 'marketing'
   elsif rand_num == 2
-    return "technical"
+    return 'technical'
   end
 
-  "sales"
+  'sales'
 end
 
 1000.times do
@@ -25,4 +25,5 @@ end
                       email: Faker::Internet.email,
                       department: random_department,
                       message: Faker::Lorem.paragraph
+                      status: 'not_done'
 end
