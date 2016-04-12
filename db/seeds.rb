@@ -25,5 +25,5 @@ end
                       email: Faker::Internet.email,
                       department: random_department,
                       message: Faker::Lorem.paragraph
-                      status: 'not_done'
+                      status: 'Not Done'
 end

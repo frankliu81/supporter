@@ -22,7 +22,7 @@ class RequestsController < ApplicationController
 
   def index
     #@requests = Request.all
-     @requests = Request.order('created_at').page(params[:page]).per(7)
+     @requests = Request.order('status DESC').page(params[:page]).per(7)
      #byebug;
   end
 
@@ -54,14 +54,17 @@ class RequestsController < ApplicationController
 
   def status_change
 
-    @request = Request.find params[:id_status_change]
+    #@request = Request.find params[:id_status_change]
 
-    if @request.status == 'not_done'
-       @request.status = 'done'
-    elsif @request.status == 'done'
-      @request.status = 'not_done'
+    # change to link_to with :id
+    @request = Request.find params[:id]
+
+    if @request.status == 'Not Done'
+       @request.status = 'Done'
+    elsif @request.status == 'Done'
+      @request.status = 'Not Done'
     else
-      @request.status = 'not_done'
+      @request.status = 'Not Done'
     end
 
     @request.save

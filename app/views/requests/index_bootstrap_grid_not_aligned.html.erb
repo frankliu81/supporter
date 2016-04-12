@@ -1,0 +1,113 @@
+<style>
+
+.container{
+  width: 95%;
+  font-size: 1em;
+}
+
+.header__left {
+  vertical-align: top;
+  display: inline-block;
+  width: 60%;
+}
+
+.header__right {
+  display: inline-block;
+  width: 30%;
+}
+
+.message--shorten{
+  max-width:200px; /* Customise it accordingly */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.request-heading, .request-item {
+  width: 100%;
+  border: solid black 1px;
+}
+
+.btn-secondary {
+  border: solid black 1px;
+}
+
+.pagination_info
+{
+  text-align: left;
+}
+
+</style>
+
+<div class="header">
+  <div class="header__left">
+    <h1>Support Requests</h1>
+  </div>
+  <div class="header__right">
+    <form action="/requests/search" method="GET">
+      <input type="text" name="search" class="form-control" value="">
+      <br>
+      <input type="submit" value="Search" class="btn btn-primary">
+    </form>
+  </div>
+</div>
+
+<%= paginate(@requests) %>
+<div class="pagination_info">
+  <%= page_entries_info @requests %>
+</div>
+
+<div class = "row">
+  <div class="col-sm-2">
+     Name
+  </div>
+  <div class="col-sm-2">
+    E-mail
+  </div>
+  <div class="col-sm-2">
+    Department
+  </div>
+  <div class="col-sm-3">
+    Message
+  </div>
+  <div class="col-sm-3">
+    Actions
+  </dvai>
+</div>
+
+<% @requests.each do |request| %>
+
+
+  <div class = "row">
+
+
+    <div class="col-sm-2">
+      <%= request.name %>
+    </div>
+    <div class="col-sm-2">
+      <%= request.email %>
+    </div>
+    <div class="col-sm-2">
+      <%= request.department %>
+    </div>
+    <div class="col-sm-3 message--shorten">
+      <%= request.message %>
+    </div>
+
+    <div class="col-sm-3 request-button-group">
+      <div class="row">
+        <%= button_to "Edit", edit_request_path(request) %>
+        <%= button_to "Delete", request_path(request), method: :delete,
+                                                  data: {confirm: "Are you sure?"} %>
+        <%= button_to request.status, status_change_request_path(request), method: :post%>
+      </div>
+    </div>
+
+
+  </div>
+
+<% end %>
+
+
+<%= paginate(@requests) %>
