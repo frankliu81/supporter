@@ -4,9 +4,25 @@ input[type="radio"] {
   vertical-align: middle;
 }
 
-#id-textarea-message  {
-  height: 10em;
+.textarea-message  {
   width: 20em;
+}
+
+.form-request {
+  width: 80%;
+}
+
+/* mobile resolution */
+@media all and (max-width: 900px) and (min-width: 200px) {
+    body{
+        font-size: 11px;
+    }
+
+    .textarea-message  {
+      width: 15em;
+    }
+
+
 }
 
 </style>
@@ -16,45 +32,44 @@ input[type="radio"] {
 <%= @request.errors.full_messages.join(", ") %>
 
 
+<%= form_for @request, :html => {class: "form-horizontal form-request"} do |f| %>
 
-  <div class="col-md-6">
-
-    <%= form_for @request, :html => {:class => "form-horizontal"} do |f| %>
-      <div class="form-group">
-        <%= f.label :name, class: "col-md-2 control-label" %>
-        <div class="col-md-8">
-          <%= f.text_field :name, class: "form-control"  %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :email, class: "col-md-2 control-label" %>
-        <div class="col-md-8">
-          <%= f.text_field :email, class: "form-control"  %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-2 control-label">Department</label>
-        <div class="col-md-8">
-          <%= label :department_sales, 'Sales', class: "radio-inline", for: "id-radio-sales" %>
-          <%= f.radio_button :department, 'sales', :checked => true, id: "id-radio-sales" %>
-
-          <%= label :department_marketing, 'Marketing', class: "radio-inline", for: "id-radio-marketing" %>
-          <%= f.radio_button :department, 'marketing', id: "id-radio-marketing" %>
-
-          <%= label :department_technical, 'Technical', class: "radio-inline", for: "id-radio-technical" %>
-          <%= f.radio_button :department, 'technical', id: "id-radio-technical"%>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :message, class: "col-md-2 control-label", for: "id-textarea-message"  %>
-        <div class="col-md-8">
-          <%= f.text_area :message, class: "form-control", id: "id-textarea-message" %>
-        </div>
-      </div>
-
-      <%= f.submit "Save", class: "btn btn-primary"%>
-    <% end %>
+  <div class="form-group">
+    <%= f.label :name, class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :name, class: "form-control"  %>
+    </div>
   </div>
+
+
+  <div class="form-group">
+    <%= f.label :email, class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :email, class: "form-control"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-2 control-label">Department</label>
+    <div class="col-md-8">
+      <%= label :department_sales, 'Sales', class: "radio-inline", for: "id-radio-sales" %>
+      <%= f.radio_button :department, 'sales', :checked => true, id: "id-radio-sales" %>
+
+      <%= label :department_marketing, 'Marketing', class: "radio-inline", for: "id-radio-marketing" %>
+      <%= f.radio_button :department, 'marketing', id: "id-radio-marketing" %>
+
+      <%= label :department_technical, 'Technical', class: "radio-inline", for: "id-radio-technical" %>
+      <%= f.radio_button :department, 'technical', id: "id-radio-technical"%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :message, class: "col-md-2 control-label", for: "id-textarea-message"  %>
+    <div class="col-md-8">
+      <%= f.text_area :message, class: "form-control textarea-message", id: "id-textarea-message" %>
+    </div>
+  </div>
+
+  <%= f.submit "Save", class: "btn btn-primary"%>
+
+<% end %>

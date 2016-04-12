@@ -6,20 +6,27 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style>
+    .nav-header {          
+    }
+  </style>
+
 </head>
 <body>
-  <%= link_to "Home", home_path  %>
-  |
-  <%= link_to "About", about_path  %>
-  |
-  <%= link_to "New Request", new_request_path %>
-  |
-  <%= link_to "Support Requests", requests_path %>
+  <div class="nav-header">
+    <%= link_to "Home", home_path  %>
+    |
+    <%= link_to "About", about_path  %>
+    |
+    <%= link_to "New Request", new_request_path %>
+    |
+    <%= link_to "Support Requests", requests_path %>
   <hr>
+  </div>
 
   <div class="container">
     <%= yield %>
   </div>
-  
+
 </body>
 </html>

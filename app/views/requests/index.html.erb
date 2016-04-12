@@ -7,17 +7,17 @@
 
 .header__left {
   display: inline-block;
-  width: 37%;
-  text-align: center
-  border: black solid 1px;
+  width: 40%;
+  /* min-width in header to force in-line block wrapping of search*/
+  min-width: 300px;
+  /*border: black solid 1px;*/
 }
 
 .header__right {
   display: inline-block;
   width: 30%;
-  min-width: 400px;
-  text-align: center
-  border: black solid 1px;
+  text-align: right;
+  /*border: black solid 1px;*/
 }
 
 .txt-search, .btn-search{
@@ -26,8 +26,9 @@
 
 .txt-search {
   margin-right: 5%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   width: 60%;
+  min-width: 200px;
 }
 
 .message--shorten{
@@ -82,6 +83,39 @@
   /*min-width prevents stacking*/
   min-width: 230px;
 }
+
+
+/* mobile resolution */
+@media all and (max-width: 900px) and (min-width: 200px) {
+    body{
+        font-size: 11px;
+    }
+
+    .header__right {
+
+      text-align: left;
+      /*border: black solid 2px;*/
+    }
+}
+
+/* alternative to allow the search button to stack if
+I didn't set minimum header__left width, less elegant*/
+/*@media all and (max-width: 600px) and (min-width: 200px) {
+
+  .txt-search, .btn-search{
+    display: block;
+  }
+
+  .txt-search {
+    width: 50%;
+  }
+
+  .btn-search {
+    margin-top
+  }
+}*/
+
+
 
 </style>
 
