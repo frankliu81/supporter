@@ -50,19 +50,17 @@
 }
 
 .btn-edit {
-  background-color: DarkOrange;
+
 }
 
 .btn-delete {
-  background-color: Red;
 }
 
 .btn-status-done {
-  background-color: DarkGreen;
 }
 
 .btn-status-not-done {
-  background-color: DarkRed;
+  background-color: DarkBlue;
 }
 
 
@@ -119,6 +117,7 @@ I didn't set minimum header__left width, less elegant*/
 
 </style>
 
+<h1> In Search </h1>
 <div class="header">
   <div class="header__left">
     <h1>Support Requests</h1>
@@ -168,13 +167,13 @@ I didn't set minimum header__left width, less elegant*/
        <td class="message--shorten"><%= request.message %></td>
        <td>
           <div class="btn-group btn-group--edit-delete-status">
-            <%= button_to "Edit", edit_request_path(request), method: :get, class: 'btn btn-secondary btn-edit'  %>
+            <%= button_to "Edit", edit_request_path(request), method: :get, class: 'btn btn-primary btn-edit'  %>
             <%= button_to "Delete", request_path(request), method: :delete,
                                                      data: {confirm: "Are you sure?"},
-                                                     class: 'btn btn-secondary btn-delete'%>
+                                                     class: 'btn btn-secondary btn-primary'%>
             <% btn_status = (request.status == "Done")? "btn-status-done" : "btn-status-not-done" %>
             <%= button_to request.status, status_change_request_path(request), method: :post,
-                                                    class: "btn btn-secondary #{btn_status}"%>
+                                                    class: "btn btn-primary #{btn_status}"%>
           </div>
        </td>
     </tr>

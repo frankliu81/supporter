@@ -50,6 +50,8 @@ class RequestsController < ApplicationController
   def search
     #@requests = Request.all
     @requests = Request.search(params[:search]).page(params[:page]).per(7)
+    # render the index page
+    render :index
   end
 
   def status_change

@@ -5,30 +5,36 @@
   font-size: 0.8em;
 }
 
-.header__left {
-  display: inline-block;
-  width: 40%;
-  /* min-width in header to force in-line block wrapping of search*/
-  min-width: 300px;
-  /*border: black solid 1px;*/
+h1 {
+  margin-bottom: 0px;
+}
+.support-header {
+  display: flex;
+  align-items: flex-end;
+  /*align-items: center;*/
+  justify-content: space-between;
 }
 
-.header__right {
-  display: inline-block;
-  width: 30%;
-  text-align: right;
-  /*border: black solid 1px;*/
+.support-header form {
+  display: flex;
+
 }
 
-.txt-search, .btn-search{
+.btn-search {
   display: inline-block;
+  float: right;
+  /* prevent btn from being resized in mobile mode*/
+  max-width: 80px;
 }
 
 .txt-search {
-  margin-right: 5%;
-  margin-bottom: 5%;
-  width: 60%;
-  min-width: 200px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  min-width: 150px;
+  height: 20px;
+  display: inline-block;
+  float: right;
 }
 
 .message--shorten{
@@ -44,25 +50,21 @@
   border: solid black 1px;
 }
 
+.btn{
+  padding-top: 0px;
+  height: 20px;
+}
+
 .btn-secondary {
   border: solid black 1px;
   color: white
 }
 
-.btn-edit {
-  background-color: DarkOrange;
-}
-
-.btn-delete {
-  background-color: Red;
-}
-
-.btn-status-done {
-  background-color: DarkGreen;
-}
-
+.btn-edit {}
+.btn-delete {}
+.btn-status-done {}
 .btn-status-not-done {
-  background-color: DarkRed;
+  background-color: DarkBlue;
 }
 
 
@@ -86,49 +88,42 @@
 
 
 /* mobile resolution */
-@media all and (max-width: 900px) and (min-width: 200px) {
+
+@media all and (max-width: 650px) and (min-width: 200px) {
     body{
         font-size: 11px;
     }
 
-    .header__right {
-
-      text-align: left;
-      /*border: black solid 2px;*/
+    h1 {
+      margin-bottom: 10px;
     }
+
+    .support-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .support-header form {
+      flex-direction: row-reverse;
+    }
+
 }
-
-/* alternative to allow the search button to stack if
-I didn't set minimum header__left width, less elegant*/
-/*@media all and (max-width: 600px) and (min-width: 200px) {
-
-  .txt-search, .btn-search{
-    display: block;
-  }
-
-  .txt-search {
-    width: 50%;
-  }
-
-  .btn-search {
-    margin-top
-  }
-}*/
-
-
-
 </style>
 
-<div class="header">
-  <div class="header__left">
-    <h1>Support Requests</h1>
+<div class="row">
+
+  <div class="col-xs-12">
+    <div class="support-header">
+      <h1>Support Requests</h1>
+
+      <form action="/requests/search" method="GET" class="search-group">
+        <input type="text" name="search" class="txt-search" value="">
+        <input type="submit" value="Search" class="btn btn-primary btn-search">
+      </form>
+    </div>
+
   </div>
-  <div class="header__right">
-    <form action="/requests/search" method="GET">
-      <input type="text" name="search" class="txt-search" value="">
-      <input type="submit" value="Search" class="btn btn-primary btn-search">
-    </form>
-  </div>
+
 </div>
 
 <%= paginate(@requests) %>
@@ -168,13 +163,13 @@ I didn't set minimum header__left width, less elegant*/
        <td class="message--shorten"><%= request.message %></td>
        <td>
           <div class="btn-group btn-group--edit-delete-status">
-            <%= button_to "Edit", edit_request_path(request), method: :get, class: 'btn btn-secondary btn-edit'  %>
+            <%= button_to "Edit", edit_request_path(request), method: :get, class: 'btn btn-primary btn-edit'  %>
             <%= button_to "Delete", request_path(request), method: :delete,
                                                      data: {confirm: "Are you sure?"},
-                                                     class: 'btn btn-secondary btn-delete'%>
+                                                     class: 'btn btn-secondary btn-primary'%>
             <% btn_status = (request.status == "Done")? "btn-status-done" : "btn-status-not-done" %>
             <%= button_to request.status, status_change_request_path(request), method: :post,
-                                                    class: "btn btn-secondary #{btn_status}"%>
+                                                    class: "btn btn-primary #{btn_status}"%>
           </div>
        </td>
     </tr>
